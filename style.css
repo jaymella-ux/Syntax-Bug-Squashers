@@ -1,0 +1,448 @@
+
+
+:root {
+    --bg:#ece3ff;
+    --panel:#fffafd;
+    --ink:#3b2f5c;
+    --soft:#7d6fa3;
+    --pink:#ff8fb1;
+    --pink2:#ffd6e3;
+    --mint:#8fe0c0;
+    --mint2:#d5f7ea;
+    --lav:#c9b6ff;
+    --bad:#ff6b8b;
+}
+
+
+* {
+    box-sizing:border-box;
+}
+
+
+html,body {
+    margin:0;
+    height:100%;
+}
+
+
+body {
+    font-family:'Fredoka','Trebuchet MS',system-ui,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:12px;
+}
+
+
+.app {
+    width:100%;
+    max-width:900px;
+    min-height:min(640px,100vh - 24px);
+    background:var(--panel);
+    border:3px solid var(--lav);
+    border-radius:24px;
+    padding:clamp(12px,3vw,24px);
+    position:relative;
+    display:flex;
+    flex-direction:column;
+}
+
+
+.screen {
+    display:none;
+    flex:1;
+    flex-direction:column;
+}
+
+
+.screen.on {
+    display:flex;
+}
+
+
+h1 {
+    font-size:clamp(28px,7vw,48px);
+    margin:0;
+    font-weight:600;
+    color:var(--pink);
+    line-height:1.05;
+}
+
+
+h1 span {
+    color:var(--mint);
+    filter:brightness(.8);
+}
+
+
+h2 {
+    margin:0 0 8px;
+    font-size:clamp(22px,5vw,32px);
+    font-weight:600
+}
+p {
+    line-height:1.5;
+    margin:0 0 12px
+}
+.center {
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    gap:10px
+}
+.btn {
+    font:inherit;
+    font-weight:500;
+    font-size:16px;
+    padding:10px 22px;
+    border-radius:999px;
+    border:2.5px solid var(--lav);
+    background:#fff;
+    color:var(--ink);
+    cursor:pointer;
+    transition:transform .1s
+}
+.btn:hover {
+    transform:translateY(-2px)
+}
+.btn:active {
+    transform:scale(.97)
+}
+
+
+.btn.main {
+    background:var(--pink);
+    border-color:#e46c93;
+    color:#fff;
+    font-size:20px;
+    padding:12px 34px;
+}
+
+
+.btn.go {
+    background:var(--mint2);
+    border-color:var(--mint);
+}
+
+
+.btn.go.ready {
+    background:var(--mint);
+    animation:pulse 1s infinite;
+}
+
+
+.btn.hint {
+    background:#efe6ff;
+}
+
+
+.btn.pause {
+    background:var(--pink2);
+    border-color:var(--pink);
+}
+
+
+@keyframes pulse {
+    50% {
+        transform:scale(1.06)
+    }
+}
+
+
+.hi {
+    font-size:18px;
+    color:var(--soft);
+}
+
+
+.bugs {
+    font-size:48px;
+    letter-spacing:8px;
+}
+
+
+.list {
+    text-align:left;
+    max-width:520px;
+    margin:0 auto 8px;
+    padding-left:20px;
+    line-height:1.7;
+}
+
+
+.hud {
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    align-items:center;
+    margin-bottom:10px;
+}
+
+
+.pill {
+    background:#fff;
+    border:2.5px solid var(--lav);
+    border-radius:999px;
+    padding:4px 14px;
+    font-weight:500;
+    font-size:15px;
+    white-space:nowrap;
+}
+
+
+.pill.combo {
+    background:var(--pink2);
+    border-color:var(--pink);
+}
+
+
+.pill.hearts {
+    color:var(--bad);
+    letter-spacing:2px;
+}
+
+
+.sp {
+    flex:1;
+}
+
+
+.code {
+    background:#fff;
+    border:2.5px solid var(--lav);
+    border-radius:16px;
+    padding:14px 8px;
+    font-family:'Fira Code',Consolas,monospace;
+    font-size:clamp(12px,2.6vw,18px);
+    line-height:1.75;
+    overflow:auto;
+    flex:1;
+    min-height:200px;
+}
+
+
+.ln {
+    white-space:pre;
+    padding:0 8px;
+}
+
+
+.tok {
+    border-radius:6px;
+    cursor:pointer;
+    padding:1px 0;
+}
+
+
+.tok:hover {
+    background:#f3ecff;
+}
+
+
+.tok.bug.sel {
+    background:var(--pink2);
+    outline:2px dashed var(--pink);
+}
+
+
+.tok.bug.hint {
+    background:var(--pink2);
+    animation:wig .4s 4;
+}
+
+
+.tok.fixed {
+    background:var(--mint2);
+    color:#0f6b4b;
+    cursor:default;
+}
+
+
+.tok.oops {
+    background:#ffd0da;
+    animation:wig .3s;
+}
+
+
+@keyframes wig {
+    25% {
+        transform:translateX(-3px);
+    }
+    75% {
+        transform:translateX(3px);
+    }
+}
+
+
+.fix {
+    min-height:56px;
+    margin-top:10px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    align-items:center;
+}
+
+
+.fix .q {
+    font-weight:500;
+    margin-right:4pxl;
+}
+
+
+.fix button {
+    font-family:'Fira Code',Consolas,monospace;
+    font-size:15px;
+    padding:7px 14px;
+    border-radius:12px;
+    border:2.5px solid var(--lav);
+    background:#fff;
+    color:var(--ink);
+    cursor:pointer;
+}
+
+
+.fix button:hover {
+    background:var(--pink2);
+}
+
+
+.fix button:disabled {
+    opacity:.4;
+    cursor:default;
+}
+
+
+.bar {
+    display:flex;
+    gap:8px;
+    margin-top:10px;
+    flex-wrap:wrap;
+}
+
+
+.ov {
+    position:absolute;
+    inset:0;
+    background:rgba(236,227,255,.94);
+    border-radius:21px;
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:20px;
+    z-index:5;
+    gap:8px;
+}
+
+
+.ov.on {
+    display:flex;
+}
+
+
+.big {
+    font-size:clamp(40px,12vw,72px);
+    font-weight:600;
+    color:var(--pink);
+    line-height:1;
+}
+
+
+.deco {
+    position:absolute;
+    font-size:28px;
+    opacity:.5;
+    animation:fl 4s ease-in-out infinite;
+}
+
+
+@keyframes fl {
+    50%{
+        transform:translateY(-8px);
+    }
+}
+
+
+.lrow {
+    margin-bottom:10px;
+}
+
+
+.lrow h3 {
+    margin:0 0 6px;
+    font-size:20px;
+    font-weight: 600;
+}
+
+
+.lbtns {
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    justify-content:center;
+}
+
+
+.btn.lv {
+    font-size:15px;
+    padding:8px 16px;
+}
+
+
+.btn.lv.d0 {
+    background:var(--mint2);
+    border-color:var(--mint);
+}
+
+
+.btn.lv.d1 {
+    background:var(--pink2);
+    border-color:var(--pink);
+}
+.btn.lv.d2 {
+    background:#e4d8ff;
+    border-color:var(--lav);
+}
+.btn:disabled {
+    opacity:.45;
+    cursor:not-allowed;
+    transform:none;
+}
+.blank {
+    font:inherit;
+    color:var(--ink);
+    background:#fff7fb;
+    border:0;
+    border-bottom:2px dashed var(--pink);
+    border-radius:4px 4px 0 0;
+    padding:0 4px;
+    margin:0 2px;
+    outline:none;
+    text-align:center;
+}
+.blank:focus, .blank:current {
+    background:var(--pink2);
+}
+.blank.ok {
+    background:var(--mint2);
+    border-bottom:2px solid var(--mint);
+    color:#0f6b4b;
+}
+
+
+.blank.bad {
+    background:#ffd0da;
+    border-bottom:2px solid var(--bad);
+    animation:wig .3s;
+}
+
+
+@media (prefers-reduced-motion:reduce) {
+    * {
+        animation:none!important
+    }
+}

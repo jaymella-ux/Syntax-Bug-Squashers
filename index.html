@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Syntax Bug Squasher</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+
+
+<section class="screen center on" id="start">
+  <div class="bugs" aria-hidden="true">&#128030;</div>
+  <h1>Syntax Bug<br><span>Squasher</span></h1>
+  <p>Find the typos hiding in the code before time runs out.</p>
+  <button class="btn main" id="btnPlay">Start</button>
+  <button class="btn" id="btnHow">How to play</button>
+  <div class="hi">Total best score: <b id="hiStart">0</b></div>
+</section>
+
+
+<section class="screen center" id="how">
+  <h2>How to play</h2>
+  <ol class="list">
+    <li>Read the code and tap the spot that looks wrong.</li>
+    <li>Pick the correct fix from the choices below the code.</li>
+    <li>Right answers score points. Back-to-back right answers build a combo (up to x5).</li>
+    <li>A wrong tap or wrong choice costs a heart and breaks your combo.</li>
+    <li>Fix every bug, then press Run code to clear the level.</li>
+    <li>There are 9 levels: Easy, Medium, and Hard for HTML, then CSS, then JavaScript. Beat a level to unlock the next.</li>
+    <li>Hard levels are fill in the blanks: type the missing code in each box, then press Check code. Enter only moves to the next box, so you won't lose a heart by accident.</li>
+    <li>Hint shows one bug but costs 50 points. You get 3 hints (5 on Hard levels).</li>
+  </ol>
+  <button class="btn main" id="btnGo">Let's squash</button>
+  <button class="btn" id="btnBack">Back</button>
+</section>
+
+
+<section class="screen center" id="levels">
+  <h2>Choose a level</h2>
+  <p>Beat a level to unlock the next one.</p>
+  <div id="levelGrid"></div>
+  <button class="btn" id="btnLvBack">Back</button>
+</section>
+
+
+<section class="screen" id="game">
+  <div class="hud">
+    <span class="pill" id="hStage">Stage 1</span>
+    <span class="pill">Score: <b id="hScore">0</b></span>
+    <span class="pill combo">Combo x<b id="hCombo">0</b></span>
+    <span class="sp"></span>
+    <span class="pill">Time <b id="hTime">0:00</b></span>
+    <span class="pill hearts" id="hLives" aria-label="Lives"></span>
+  </div>
+  <div class="code" id="code"></div>
+  <div class="fix" id="fix"></div>
+  <div class="bar">
+    <button class="btn go" id="btnRun">Run code</button>
+    <span class="sp"></span>
+    <button class="btn hint" id="btnHint">Hint (<span id="hHints">3</span>)</button>
+    <button class="btn pause" id="btnPause">Pause</button>
+  </div>
+</section>
+
+
+<section class="screen center" id="over">
+  <div class="big" id="oTitle">Game over</div>
+  <p id="oMsg"></p>
+  <div class="pill">Score: <b id="oScore">0</b></div>
+  <div class="pill">High score: <b id="oHigh">0</b></div>
+  <div id="oNew" class="hi"></div>
+  <button class="btn main" id="btnNext">Next level</button>
+  <button class="btn" id="btnAgain">Play again</button>
+  <button class="btn" id="btnMenu">Choose level</button>
+  <button class="btn" id="btnHome">Main menu</button>
+</section>
+
+
+<div class="ov" id="ov">
+  <div class="big" id="ovT"></div>
+  <p id="ovM"></p>
+  <button class="btn main" id="ovB"></button>
+  <button class="btn" id="ovR" style="display:none">Restart level</button>
+</div>
+
+
+<script src="game.js"></script>
+</div>
+
