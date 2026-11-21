@@ -20,7 +20,7 @@ h1{font-size:clamp(26px,min(7vw,7vh),48px);margin:0;font-weight:600;color:var(--
 h1 span{color:var(--mint);filter:brightness(.8)}
 h2{margin:0 0 8px;font-size:clamp(22px,5vw,32px);font-weight:600}
 p{line-height:1.5;margin:0 0 12px}
-.center{align-items:center;justify-content:safe center;text-align:center;gap:10px}
+.center{align-items:center;justify-content:center;justify-content:safe center;text-align:center;gap:10px}
 .btn{font:inherit;font-weight:500;font-size:16px;padding:10px 22px;border-radius:999px;border:2.5px solid var(--lav);background:#fff;color:var(--ink);cursor:pointer;transition:transform .1s;box-shadow:0 3px 0 var(--lav)}
 .btn:hover{transform:translateY(-2px)}
 .btn:active{transform:translateY(2px);box-shadow:none}
@@ -77,6 +77,10 @@ p{line-height:1.5;margin:0 0 12px}
 .blank.ok{background:var(--mint2);border-bottom:2px solid var(--mint);color:#0f6b4b}
 .blank.bad{background:var(--bad);border-bottom:2px solid #fff;animation:wig .3s}
 .code.hinting .tok.bug:not(.fixed),.code.hinting .blank:not(.ok){outline:3px dashed var(--pink);animation:wig .5s infinite;cursor:crosshair}
+.tok.bug.clued{outline:2px dotted var(--pink)}
+.blank::placeholder{color:#c9b6ff;opacity:1}
+.blank.clued{border-bottom-style:solid}
+.fix .clue{flex-basis:100%;background:var(--pink2);border-radius:12px;padding:6px 12px;font-size:14px}
 .btn.hint.on{background:var(--pink);color:#fff;border-color:#e46c93}
 .pop{position:fixed;font-weight:600;font-size:22px;color:var(--pink);pointer-events:none;z-index:20;text-shadow:0 2px 0 #fff;animation:up .9s forwards}
 .pop.bad{color:var(--bad)}

@@ -5,6 +5,7 @@ const DIFFS = [
   { n: 'Hard', lives: 3 }
 ];
 
+/* Level number = language * 3 + difficulty. Bug format: [[wrong|right|distractor|distractor]] ; blanks: {{answer|alt}} */
 const LEVELS = [
   { lang: 0, diff: 0, time: 90, lines: [
     '<!DOCTYPE html>','<html>','  <body>',
@@ -103,6 +104,7 @@ let unlocked = load('sbsUnlocked', 1);
 const totalBest = () => Object.values(best).reduce((a, b) => a + b, 0);
 $('#hiStart').textContent = totalBest();
 
+/* Animated background: floating code symbols and bugs */
 (function sky() {
   const items = ['</>', '{ }', '( )', ';', '=>', '#', '&#128030;', '&#128027;', '&#10024;', '[ ]', '&&', '&#128375;&#65039;'];
   const box = $('#sky');
@@ -117,6 +119,7 @@ $('#hiStart').textContent = totalBest();
   }
 })();
 
+/* Effects */
 function pop(el, text, bad) {
   const r = el.getBoundingClientRect();
   const p = document.createElement('div');
@@ -302,6 +305,7 @@ function loadLevel() {
   S.timer = setInterval(tick, 1000);
 }
 
+/* Shrink the code text until every line fits on screen without scrolling */
 function fitCode() {
   const c = $('#code');
   if (!c.offsetHeight) return;
@@ -349,6 +353,12 @@ function pickBug(el) {
   q.className = 'q';
   q.textContent = 'Pick the fix:';
   fx.appendChild(q);
+  if (el.dataset.clue) {
+    const c = document.createElement('span');
+    c.className = 'clue';
+    c.textContent = el.dataset.clue;
+    fx.appendChild(c);
+  }
   shuffle([el.dataset.fix, ...el.dataset.d.split('|')]).forEach(opt => {
     const b = document.createElement('button');
     b.textContent = opt;
@@ -406,30 +416,43 @@ function setHintMode(on) {
   }
 }
 
+function clueSteps(el) {
+  const blank = el.classList.contains('blank');
+  const ans = blank ? el.dataset.ans.split('|')[0] : el.dataset.fix;
+  const n = ans.length;
+  const tail = !blank && n > 2 ? 1 : 0;
+  const mid = n - tail;
+  const cap = Math.max(mid - 1, 0);
+  const ks = [...new Set([1, Math.ceil(mid / 2), mid - 1].map(k => Math.min(Math.max(k, 0), cap)))].sort((a, b) => a - b);
+  return ks.map(k => ans.slice(0, k) + '_'.repeat(mid - k) + (tail ? ans[n - 1] : ''));
+}
+
 function useHint(el) {
   if (!S.active || S.paused || !S.hintMode) return;
-  if (el.classList.contains('blank')) {
-    if (el.classList.contains('ok')) return;
-    el.value = el.dataset.ans.split('|')[0];
-    el.classList.remove('bad');
-    el.classList.add('ok');
-    el.readOnly = true;
-  } else {
-    if (el.classList.contains('fixed')) return;
-    el.textContent = el.dataset.fix;
-    el.className = 'tok fixed';
-    el.onclick = null;
-    el.tabIndex = -1;
+  const blank = el.classList.contains('blank');
+  if (blank ? el.classList.contains('ok') : el.classList.contains('fixed')) return;
+  const steps = clueSteps(el);
+  let lvl = +el.dataset.hl || 0;
+  let fresh = false;
+  if (lvl < steps.length) {
+    lvl++;
+    fresh = true;
+    el.dataset.hl = lvl;
+    S.hints--;
+    S.score = Math.max(0, S.score - 50);
+    pop(el, 'Hint -50', true);
   }
-  S.fixed++;
-  S.hints--;
-  S.score = Math.max(0, S.score - 50);
-  pop(el, 'Hint -50', true);
+  const mask = steps[lvl - 1];
+  el.dataset.clue = 'Clue ' + lvl + ' of ' + steps.length + ': it looks like "' + mask + '" (' + mask.length + ' characters).' + (!fresh ? ' No more clues for this one.' : '');
+  el.classList.add('clued');
+  if (blank) el.placeholder = mask;
   setHintMode(false);
-  if (S.fixed === S.bugs && !LEVELS[S.level].type) {
-    $('#btnRun').classList.add('ready');
-    $('#fix').textContent = 'All bugs squashed! Press Run code.';
-  }
+  const fx = $('#fix');
+  fx.textContent = '';
+  const c = document.createElement('span');
+  c.className = 'clue';
+  c.textContent = el.dataset.clue;
+  fx.appendChild(c);
   hud();
 }
 
@@ -502,6 +525,7 @@ function end(win, msg) {
   if (win) confetti();
 }
 
+/* Keyboard shortcuts (not while typing in a blank) */
 document.addEventListener('keydown', e => {
   if (!$('#game').classList.contains('on') || $('#ov').classList.contains('on')) return;
   if (e.target.tagName === 'INPUT') return;
