@@ -2,24 +2,23 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
 <title>Syntax Bug Squasher</title>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="app">
-
+<div id="sky" aria-hidden="true"></div>
+<div class="app" id="app">
 
 <section class="screen center on" id="start">
-  <div class="bugs" aria-hidden="true">&#128030;</div>
+  <div class="bugs" aria-hidden="true"><span>&#128030;</span><span>&#128027;</span><span>&#128375;&#65039;</span></div>
   <h1>Syntax Bug<br><span>Squasher</span></h1>
   <p>Find the typos hiding in the code before time runs out.</p>
   <button class="btn main" id="btnPlay">Start</button>
   <button class="btn" id="btnHow">How to play</button>
   <div class="hi">Total best score: <b id="hiStart">0</b></div>
 </section>
-
 
 <section class="screen center" id="how">
   <h2>How to play</h2>
@@ -29,14 +28,14 @@
     <li>Right answers score points. Back-to-back right answers build a combo (up to x5).</li>
     <li>A wrong tap or wrong choice costs a heart and breaks your combo.</li>
     <li>Fix every bug, then press Run code to clear the level.</li>
-    <li>There are 9 levels: Easy, Medium, and Hard for HTML, then CSS, then JavaScript. Beat a level to unlock the next.</li>
-    <li>Hard levels are fill in the blanks: type the missing code in each box, then press Check code. Enter only moves to the next box, so you won't lose a heart by accident.</li>
-    <li>Hint shows one bug but costs 50 points. You get 3 hints (5 on Hard levels).</li>
+    <li>There are 9 levels: Easy, Medium, and Hard for HTML (orange), CSS (green), and JavaScript (magenta). Beat a level to unlock the next.</li>
+    <li>Hard levels are fill in the blanks: a comment above each blank tells you what it does. Type the missing code in each box, then press Check code. Enter only moves to the next box.</li>
+    <li>Hint: press Hint, then tap the bug (or blank) you want answered. It gets fixed for you but costs 50 points. You get 3 hints (5 on Hard levels).</li>
+    <li>Keyboard: keys 1-4 pick a fix, H for a hint, P to pause, Enter to run the code.</li>
   </ol>
   <button class="btn main" id="btnGo">Let's squash</button>
   <button class="btn" id="btnBack">Back</button>
 </section>
-
 
 <section class="screen center" id="levels">
   <h2>Choose a level</h2>
@@ -45,26 +44,25 @@
   <button class="btn" id="btnLvBack">Back</button>
 </section>
 
-
 <section class="screen" id="game">
   <div class="hud">
-    <span class="pill" id="hStage">Stage 1</span>
+    <span class="pill stage" id="hStage">Stage 1</span>
     <span class="pill">Score: <b id="hScore">0</b></span>
-    <span class="pill combo">Combo x<b id="hCombo">0</b></span>
+    <span class="pill combo" id="pCombo">Combo x<b id="hCombo">0</b></span>
     <span class="sp"></span>
-    <span class="pill">Time <b id="hTime">0:00</b></span>
+    <span class="pill" id="pTime">Time <b id="hTime">0:00</b></span>
     <span class="pill hearts" id="hLives" aria-label="Lives"></span>
   </div>
+  <div class="tbar"><b id="tFill"></b></div>
   <div class="code" id="code"></div>
   <div class="fix" id="fix"></div>
   <div class="bar">
     <button class="btn go" id="btnRun">Run code</button>
     <span class="sp"></span>
     <button class="btn hint" id="btnHint">Hint (<span id="hHints">3</span>)</button>
-    <button class="btn pause" id="btnPause">Pause</button>
+    <button class="btn pause" id="btnPause">Menu</button>
   </div>
 </section>
-
 
 <section class="screen center" id="over">
   <div class="big" id="oTitle">Game over</div>
@@ -78,15 +76,17 @@
   <button class="btn" id="btnHome">Main menu</button>
 </section>
 
-
 <div class="ov" id="ov">
   <div class="big" id="ovT"></div>
   <p id="ovM"></p>
   <button class="btn main" id="ovB"></button>
-  <button class="btn" id="ovR" style="display:none">Restart level</button>
+  <div class="lbtns" id="ovMenu" style="display:none">
+    <button class="btn" id="mRestart">Restart level</button>
+    <button class="btn" id="mLevels">Choose level</button>
+    <button class="btn" id="mHome">Main menu</button>
+  </div>
 </div>
 
-
-<script src="game.js"></script>
-</div>
-
+<script src="script.js"></script>
+</body>
+</html>
