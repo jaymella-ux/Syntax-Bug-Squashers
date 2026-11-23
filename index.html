@@ -10,92 +10,42 @@
 <body>
 <div id="sky" aria-hidden="true"></div>
 <div class="app" id="app">
-
-
-  <!-- START -->
+  <div class="status" id="status">● ready   UTF-8   LF</div>
   <section class="screen center on" id="start">
     <div class="bugs" aria-hidden="true"><span>&#128030;</span><span>&#128027;</span><span>&#128375;&#65039;</span></div>
+    <pre class="boot" aria-hidden="true">[ OK ] compiler loaded
+[ OK ] bug_scanner.exe running
+[WARN] typos detected in source</pre>
     <h1>Syntax Bug<br><span>Squasher</span></h1>
     <p>Find the typos hiding in the code before time runs out.</p>
     <button class="btn main" id="btnPlay">Start</button>
     <button class="btn" id="btnHow">How to play</button>
     <div class="hi">Total best score: <b id="hiStart">0</b></div>
-    <img class="deco" src="rainbow.jpg" alt="glittery rainbow" style="top:10%;left:8%;width:80px;">
-    <span class="deco rose" style="top:32%;left:14%;font-size:44px">★</span>
-    <img class="deco" src="cat.jpg" alt="cat" style="top:54%;left:7%;width:70px;animation-delay:1.2s">
-    <span class="deco mint" style="top:76%;left:15%;font-size:40px;animation-delay:1.5s">♥</span>
-    <span class="deco green" style="top:12%;right:9%;font-size:44px;animation-delay:.5s">♥</span>
-    <img class="deco" src="flower.jpg" alt="" style="top:34%;right:7%;width:80px;animation-delay:1.2s">
-    <span class="deco sun" style="top:56%;right:14%;font-size:48px;animation-delay:1.2s">★</span>
-    <img class="deco" src="butterfly.jpg" alt="" style="top:78%;right:8%;width:60px;animation-delay:.8s">
   </section>
-
-
-  <!-- HOW TO PLAY (text) -->
   <section class="screen center" id="how">
     <h2>How to play</h2>
     <ol class="list">
-      <li>Read the code and tap the spot that looks wrong.</li>
-      <li>Pick the correct fix from the choices below the code.</li>
-      <li>Right answers score points. Back-to-back right answers build a combo (up to x5).</li>
-      <li>A wrong tap or wrong choice costs a heart and breaks your combo.</li>
-      <li>Fix every bug, then press Run code to see your output and clear the level.</li>
-      <li>There are 9 levels: Easy, Medium, and Hard for HTML, CSS, and JavaScript. Beat a level to unlock the next.</li>
-      <li>Hard levels give you almost-finished code and a short checklist. Fill in the missing pieces yourself, then press Check code. Each requirement turns green when you get it right, and you see your final output when all of them pass.</li>
-      <li>Hint: press Hint, then tap the bug (or blank) you want help with. It gives a clue, not the answer, and costs 50 points. You get 3 hints (5 on Hard levels).</li>
-      <li>Keyboard: keys 1-4 pick a fix, H for a hint, P to pause, Enter to run the code.</li>
+      <li>Read the <b>Goal</b>, then tap the line that looks wrong.</li>
+      <li>Pick the correct fix. Right fixes score points and build your <b>Combo</b> (up to <code>x5</code>).</li>
+      <li>A wrong tap or wrong fix costs a heart and resets your combo. No hearts or no time left means <b>Game over</b>.</li>
+      <li>Fix every bug, press <b>Run code</b>, then <b>Continue</b> to clear the level.</li>
+      <li>There are 9 levels: Easy, Medium and Hard for HTML, CSS and JavaScript. Beat one to unlock the next. On <b>Hard</b> levels you write the missing code and press <b>Check code</b>.</li>
+      <li><b>Hint</b> costs 50 points. Keys: <code>1</code>-<code>4</code> pick a fix, <code>H</code> hint, <code>P</code> pause, <code>Enter</code> run.</li>
     </ol>
     <button class="btn main" id="btnGo">Let’s squash</button>
     <button class="btn" id="btnBack">Back</button>
-    <img class="deco" src="rainbow.jpg" alt="glittery rainbow" style="top:10%;left:8%;width:80px;">
-    <span class="deco rose" style="top:32%;left:14%;font-size:44px">★</span>
-    <img class="deco" src="cat.jpg" alt="cat" style="top:54%;left:7%;width:70px;animation-delay:1.2s">
-    <span class="deco mint" style="top:76%;left:15%;font-size:40px;animation-delay:1.5s">♥</span>
-    <span class="deco green" style="top:12%;right:9%;font-size:44px;animation-delay:.5s">♥</span>
-    <img class="deco" src="flower.jpg" alt="" style="top:34%;right:7%;width:80px;animation-delay:1.2s">
-    <span class="deco sun" style="top:56%;right:14%;font-size:48px;animation-delay:1.2s">★</span>
-    <img class="deco" src="butterfly.jpg" alt="" style="top:78%;right:8%;width:60px;animation-delay:.8s">
   </section>
-
-
-  <!-- TUTORIAL (10 steps) -->
   <section class="screen center" id="intro">
-    <div class="tut-head">
-      <h2 id="tutTitle">Step 1 of 10</h2>
-      <div class="tsteps" id="tutSteps" role="tablist" aria-label="Tutorial steps"></div>
-    </div>
-    <div class="tut-stage" id="tutStage">
-      <div class="tut-frame" id="tutFrame">
-        <img id="tutImg" class="tut-img" src="1.png" alt="Tutorial step 1" title="Click to enlarge">
-      </div>
-    </div>
-    <p id="tutCap" class="tut-cap"></p>
-    <div class="btnrow">
-      <button class="btn" id="btnTutPrev">Back</button>
-      <button class="btn main" id="btnTutNext">Next</button>
-      <button class="btn" id="btnTutSkip">Skip</button>
-    </div>
+    <div class="tut-head"><h2 id="tutTitle">Step 1 of 10</h2><div class="tsteps" id="tutSteps" role="tablist" aria-label="Tutorial steps"></div><span class="zoomhint">click image to zoom</span><button class="btn" id="btnTutSkip">Skip</button></div>
+    <div class="tut-stage" id="tutStage"><div class="tut-frame" id="tutFrame"><img id="tutImg" class="tut-img" alt="Tutorial step 1" title="Click to enlarge"></div></div>
+    <div class="tut-foot"><button class="btn" id="btnTutPrev">Back</button><p id="tutCap" class="tut-cap"></p><button class="btn main" id="btnTutNext">Next</button></div>
   </section>
-
-
-  <!-- LEVEL SELECT -->
   <section class="screen center" id="levels">
     <h2>Choose a level</h2>
     <p>Beat a level to unlock the next one.</p>
     <div id="levelGrid"></div>
     <button class="btn" id="btnLvBack">Back</button>
-    <img class="deco" src="rainbow.jpg" alt="glittery rainbow" style="top:10%;left:8%;width:80px;">
-    <span class="deco rose" style="top:32%;left:14%;font-size:44px">★</span>
-    <img class="deco" src="cat.jpg" alt="cat" style="top:54%;left:7%;width:70px;animation-delay:1.2s">
-    <span class="deco mint" style="top:76%;left:15%;font-size:40px;animation-delay:1.5s">♥</span>
-    <span class="deco green" style="top:12%;right:9%;font-size:44px;animation-delay:.5s">♥</span>
-    <img class="deco" src="flower.jpg" alt="" style="top:34%;right:7%;width:80px;animation-delay:1.2s">
-    <span class="deco sun" style="top:56%;right:14%;font-size:48px;animation-delay:1.2s">★</span>
-    <img class="deco" src="butterfly.jpg" alt="" style="top:78%;right:8%;width:60px;animation-delay:.8s">
   </section>
-
-
-  <!-- GAME -->
   <section class="screen" id="game">
     <div class="hud">
       <span class="pill stage" id="hStage">Stage 1</span>
@@ -106,71 +56,37 @@
       <span class="pill hearts" id="hLives" aria-label="Lives"></span>
     </div>
     <div class="tbar"><b id="tFill"></b></div>
+    <div class="tabbar"><span class="tab" id="tabName">index.html</span></div>
     <div class="code" id="code"></div>
     <div class="fix" id="fix"></div>
     <div class="bar">
-      <button class="btn go" id="btnRun">Run code</button>
-      <span class="sp"></span>
+      <button class="btn go" id="btnRun">Run code</button><span class="sp"></span>
       <button class="btn hint" id="btnHint">Hint (<span id="hHints">3</span>)</button>
       <button class="btn pause" id="btnPause">Menu</button>
     </div>
   </section>
-
-
-  <!-- GAME OVER / LEVEL CLEARED -->
   <section class="screen center" id="over">
     <div class="big" id="oTitle">Game over</div>
     <p id="oMsg"></p>
     <div class="pill">Score: <b id="oScore">0</b></div>
     <div class="pill">High score: <b id="oHigh">0</b></div>
     <div id="oNew" class="hi"></div>
-    <div class="btnrow">
-      <button class="btn main" id="btnNext">Next level</button>
-      <button class="btn" id="btnAgain">Play again</button>
-      <button class="btn" id="btnMenu">Choose level</button>
-      <button class="btn" id="btnHome">Main menu</button>
-    </div>
-    <img class="deco" src="ladybug.jpg" alt="ladybug" style="top:10%;left:8%;width:80px;">
-    <span class="deco rose" style="top:32%;left:14%;font-size:44px">★</span>
-    <img class="deco" src="bee.jpg" alt="bee" style="top:54%;left:7%;width:70px;animation-delay:1.2s">
-    <span class="deco mint" style="top:76%;left:15%;font-size:40px;animation-delay:1.5s">♥</span>
-    <span class="deco green" style="top:12%;right:9%;font-size:44px;animation-delay:.5s">♥</span>
-    <img class="deco" src="worm.jpg" alt="" style="top:34%;right:7%;width:80px;animation-delay:1.2s">
-    <span class="deco sun" style="top:56%;right:14%;font-size:48px;animation-delay:1.2s">★</span>
-    <img class="deco" src="butterfly.jpg" alt="" style="top:78%;right:8%;width:60px;animation-delay:.8s">
+    <div class="btnrow"><button class="btn main" id="btnNext">Next level</button><button class="btn" id="btnAgain">Play again</button><button class="btn" id="btnMenu">Choose level</button><button class="btn" id="btnHome">Main menu</button></div>
   </section>
-
-
-  <!-- PAUSE / MESSAGE OVERLAY -->
   <div class="ov" id="ov">
-    <div class="big" id="ovT"></div>
-    <p id="ovM"></p>
-    <button class="btn main" id="ovB"></button>
-    <div class="lbtns" id="ovMenu" style="display:none">
-      <button class="btn" id="mRestart">Restart level</button>
-      <button class="btn" id="mLevels">Choose level</button>
-      <button class="btn" id="mHome">Main menu</button>
-    </div>
+    <div class="big" id="ovT"></div><p id="ovM"></p><button class="btn main" id="ovB"></button>
+    <div class="lbtns" id="ovMenu" style="display:none"><button class="btn" id="mRestart">Restart level</button><button class="btn" id="mLevels">Choose level</button><button class="btn" id="mHome">Main menu</button></div>
   </div>
-
-
-  <!-- OUTPUT PREVIEW OVERLAY -->
   <div class="ov" id="pv">
-    <h2 id="pvT">Output</h2>
-    <div class="pill" id="pvGoal"></div>
-    <p id="pvM"></p>
-    <div id="pvOut"></div>
-    <div class="lbtns">
-      <button class="btn main" id="pvB">Continue</button>
-      <button class="btn" id="pvBack">Back to code</button>
-    </div>
+    <h2 id="pvT">Output</h2><div class="pill" id="pvGoal"></div><p id="pvM"></p><div id="pvOut"></div>
+    <div class="lbtns"><button class="btn main" id="pvB">Continue</button><button class="btn" id="pvBack">Back to code</button></div>
   </div>
-
-
 </div>
 <div id="lightbox" aria-label="Enlarged tutorial image"><img id="lbImg" alt=""></div>
 <script src="script.js"></script>
 </body>
 </html>
+
+
 
 
