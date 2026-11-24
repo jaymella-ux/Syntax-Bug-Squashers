@@ -274,38 +274,7 @@ $('#hiStart').textContent = totalBest();
 })();
 
 
-// Decorations (emoji stand-ins for the original sticker images)
-(function () {
-  const pos = [
-    'top:10%;left:8%', 'top:32%;left:14%', 'top:54%;left:7%', 'top:76%;left:15%',
-    'top:12%;right:9%', 'top:34%;right:7%', 'top:56%;right:14%', 'top:78%;right:8%'
-  ];
 
-
-  const sets = {
-    start: ['💻', '</>|#39ffb0', '⌨️', '{ }|#7ab8ff', '010|#c792ea', '🖥️', '0xFF|#f6c177', '📡'],
-    over: ['🐞', '</>|#39ffb0', '🐛', '{ }|#7ab8ff', '010|#c792ea', '💾', '0xFF|#f6c177', '🔌']
-  };
-
-
-  for (const id in sets) {
-    const sc = $('#' + id);
-
-
-    sets[id].forEach((g, i) => {
-      const [ch, col] = g.split('|');
-      const s = document.createElement('span');
-      s.className = 'deco';
-      s.setAttribute('aria-hidden', 'true');
-      s.style.cssText =
-        pos[i] +
-        ';font-size:' + (ch.length > 1 ? 40 : 44) + 'px;animation-delay:' + (i % 4 * .4) + 's' +
-        (col ? ';color:' + col : '');
-      s.textContent = ch;
-      sc.appendChild(s);
-    });
-  }
-})();
 
 
 /* ---------- Visual effects ---------- */
